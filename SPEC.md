@@ -2,11 +2,11 @@
 
 ## 1. Project Overview
 
-The AI Assignment Feedback Assistant is a web application for
-universities, teachers, professors, and students. Teachers create
-classes, assignments, and exams; configure questions and marking
-guidance; review student submissions; and approve AI-generated draft
-feedback. Students join classes, submit assignment papers as PDFs, and
+GradeLens is a web application for universities, teachers, 
+professors, and students. Teachers create classes, assignments, 
+and exams; configure questions and marking guidance; review 
+student submissions; and approve AI-generated draft feedback. 
+Students join classes, submit assignment papers as PDFs, and
 download detailed feedback reports after the teacher approves them.
 
 The system combines rule-based grading for multiple-choice questions
@@ -100,10 +100,9 @@ Students can:
 - View all assignments and deadlines for enrolled classes
 - Upload and submit assignments as PDF files
 - Download approved feedback report as a PDF
--   View classes in which they are enrolled.
 
 ------------------------------------------------------------------------
-## ** CORE FEATURES**
+## **CORE FEATURES**
 ## 5. Functional Requirements 
 
 ### 5.1 Authentication and Role Management
@@ -175,10 +174,10 @@ Students can:
 
 ### 5.5 AI Evaluation Pipeline
 
-#### 5.5.1 Step 1 — PDF Text Extraction via OCR
-- Uploaded PDF converted page by page into images using PyMuPDF
-- EasyOCR processes each image and extracts text
-- Extracted text cleaned and mapped to corresponding questions
+#### 5.5.1 Step 1 — PDF Text Extraction (PyMuPDF + OCR Fallback)
+- PyMuPDF first attempts native text extraction on each page of the uploaded PDF
+- If a page contains little or no extractable text (scanned or handwritten pages), PyMuPDF renders that page as an image and EasyOCR extracts the text from it
+- Extracted text from all pages is combined, cleaned, and mapped to the corresponding questions by question number
 
 #### 5.5.2 Step 2 — MCQ Auto-Grading
 - Student answer compared directly to teacher-defined correct answer
@@ -234,7 +233,7 @@ Improvement suggestions — specific and actionable
   - Platform header
   - Student name, class name, assignment title
   - Submission date and feedback approval date
-  - Total score, percentage, and pass or fail indicator
+  - Total score, percentage, and pass or fail indicator (pass mark is set per assignment, default 50%)
   - Per-question breakdown:
     - Question number and text
     - Student submitted answer
@@ -290,7 +289,7 @@ Improvement suggestions — specific and actionable
     access.
 -   **PostgreSQL:** users, classes, enrollments, assignments, questions,
     submissions, answers, and report metadata.
--   **OCR pipeline:** PDF text extraction and OCR for image-based pages.
+-   **Text extraction pipeline:** native PDF text extraction with PyMuPDF, with EasyOCR as a fallback for scanned or handwritten pages.
 -   **LLM service:** proposed evaluation of written answers.
 -   **FPDF:** generation of the final student-facing report after
     approval.
@@ -299,7 +298,7 @@ Improvement suggestions — specific and actionable
 
 ------------------------------------------------------------------------
 
-## 8.. Database Schema
+## 8. Database Schema
 
 ### Users
 - id, name, email, password_hash, role, created_at
@@ -369,23 +368,11 @@ Improvement suggestions — specific and actionable
 ## 10. AI Evaluation Flow
 
 1. Student uploads PDF
-2. PyMuPDF converts PDF pages to images
-3. EasyOCR extracts text from each image
+2. PyMuPDF extracts text from each page
+3. For pages with no readable text, PyMuPDF renders the page as an image and EasyOCR extracts the text
 4. Text mapped to questions by number
 5. MCQ answers auto-graded by direct comparison
-6. Written answers sent to Groq LLM with this prompt:
-
-You are a university examiner. Evaluate the student answer fairly.
-Question: {question_text}
-Total Marks: {marks}
-Rubric or Sample Answer: {teacher_provided_content}
-Student Answer: {extracted_text}
-Provide:
-1. Score out of {marks} with justification
-2. Strengths
-3. Lackings
-4. Improvement suggestions
-
+6. Written answers sent to the Groq LLM using the prompt template in Section 5.5.4
 7. LLM output stored as draft
 8. Teacher reviews, edits, and approves
 9. FPDF generates student feedback PDF on approval
@@ -406,8 +393,7 @@ Provide:
 ## 12. Constraints
 - All submissions must be PDF format only
 - AI feedback never visible to students without teacher approval
-- Only free and open-source tools used — no paid APIs except Groq
-  free tier
+- Free or open-source tools are used throughout. Groq’s free tier is the only external API.
 - System supports a teacher managing multiple classes simultaneously
 - Submissions locked automatically after assignment deadline
 
@@ -425,8 +411,6 @@ Provide:
 ------------------------------------------------------------------------
 
 ## 14. Team and Project Links
-
-Fill these in when available.
 
 -   **Team members:** Arsalna Shaikh, Ayesha Amir, Afeerah Shafqat
 -   **GitHub repository:** https://github.com/Arsalna-Shaikh/GradeLens-Rubric-Based-AI-Powered-Smart-Evaluation-System
