@@ -2,16 +2,9 @@
 
 ## 1. Project Overview
 
-GradeLens is an AI-powered assignment and exam feedback platform for universities.
-Teachers create classes, set assignments/exams with rubrics or sample
-answers, and AI evaluates student submissions against them. Teachers
-review and approve AI-generated feedback before students see it.
-Students receive a detailed PDF feedback report with scores,
-improvements, and lackings given by the AI.
+GradeLens is an AI-powered assignment and exam evaluation platform designed for universities, teachers, and students. It uses large language models (LLMs) to evaluate students’ written answers against teacher-provided rubrics or sample answers, suggest marks, and generate personalized feedback explaining their strengths, mistakes, missing concepts, and areas for improvement.
 
-The system combines rule-based grading for multiple-choice questions
-(MCQs), OCR for scanned or handwritten PDFs, and a large language model
-(LLM) for draft evaluation of written answers.
+The system combines rule-based grading for multiple-choice questions (MCQs), OCR to extract text from typed, scanned, or handwritten PDF submissions, and AI-powered evaluation for written answers. Teachers can review, edit, and approve AI-generated results before students receive their grades and detailed PDF feedback reports. By automating the initial evaluation process, GradeLens reduces teachers’ grading workload while helping students understand their mistakes and improve their learning extensively.
 
 ### 1.1 Main objectives
 
