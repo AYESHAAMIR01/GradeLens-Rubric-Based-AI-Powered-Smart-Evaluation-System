@@ -7,7 +7,7 @@ Teachers create classes, set assignments/exams with rubrics or sample
 answers, and AI evaluates student submissions against them. Teachers
 review and approve AI-generated feedback before students see it.
 Students receive a detailed PDF feedback report with scores,
-improvements, and lackins.
+improvements, and lackings given by the AI.
 
 The system combines rule-based grading for multiple-choice questions
 (MCQs), OCR for scanned or handwritten PDFs, and a large language model
