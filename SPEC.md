@@ -11,9 +11,7 @@ download detailed feedback reports after the teacher approves them.
 
 The system combines rule-based grading for multiple-choice questions
 (MCQs), OCR for scanned or handwritten PDFs, and a large language model
-(LLM) for draft evaluation of written answers. The teacher remains the
-final decision-maker: **AI-generated scores and feedback must never be
-shown to a student until the teacher explicitly approves them.**
+(LLM) for draft evaluation of written answers.
 
 ### 1.1 Main objectives
 
