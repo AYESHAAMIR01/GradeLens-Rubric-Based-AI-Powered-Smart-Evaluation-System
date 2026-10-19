@@ -205,6 +205,45 @@ Strengths — what the student did well
 Lackings — what was missed or wrong
 Improvement suggestions — specific and actionable
 
+**Required output format (structured JSON)**
+
+The LLM must respond with valid JSON only — no extra text, explanations, or Markdown code fences outside the JSON.
+
+The prompt ends with the following instruction:
+
+Respond ONLY with a valid JSON object in exactly this format:
+
+```json
+{
+  "score": 0,
+  "justification": "",
+  "strengths": ["", ""],
+  "lackings": ["", ""],
+  "suggestions": ["", ""]
+}
+```
+
+The `score` must be a number between 0 and the question's maximum marks.
+
+**Handling the response**
+
+- The backend parses the JSON and validates it.
+- All required keys must be present.
+- The score must be a number between 0 and the question's maximum marks.
+- `strengths`, `lackings`, and `suggestions` must be lists of strings.
+- If the response is invalid or cannot be parsed, the backend retries the LLM call once.
+- If it still fails, the answer is flagged for manual grading by the teacher instead of being given a score.
+
+**Mapping the parsed fields to the Answers table**
+
+| LLM JSON field | Answers table column |
+|---|---|
+| `score` | `ai_score` |
+| `justification` | `ai_feedback` |
+| `strengths` | `ai_strengths` |
+| `lackings` | `ai_lackings` |
+| `suggestions` | `ai_suggestions` |
+
 ### 5.6 Teacher Review and Approval
 - Teacher dashboard shows all student submissions per assignment
 - For each student submission, teacher sees:
