@@ -87,7 +87,7 @@ def upgrade() -> None:
         if_not_exists=True,
     )
     op.create_unique_constraint(
-        "uq_enrollment_student_class", "enrollments", ["student_id", "class_id"], if_not_exists=True
+        "uq_enrollment_student_class", "enrollments", ["student_id", "class_id"]
     )
 
     op.create_table(
@@ -213,7 +213,7 @@ def upgrade() -> None:
         if_not_exists=True,
     )
     op.create_unique_constraint(
-        "uq_feedback_report_submission", "feedback_reports", ["submission_id"], if_not_exists=True
+        "uq_feedback_report_submission", "feedback_reports", ["submission_id"]
     )
 
 

@@ -98,6 +98,10 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 - Set `FRONTEND_URL` to the preview URL, or set it to `*` / `PREVIEW_MODE=true` to allow any CORS origin.
 - `npm run dev` automatically reads the `PORT` environment variable for the frontend and runs `alembic upgrade head` before starting the backend.
 
+## Project status
+
+See [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for the current implementation inventory and open verification items.
+
 ## Testing
 
 ```powershell

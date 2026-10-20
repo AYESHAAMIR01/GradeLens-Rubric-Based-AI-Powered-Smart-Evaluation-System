@@ -5,7 +5,8 @@ This project uses AI-assisted coding tools (GitHub Copilot / ChatGPT) to generat
 | Date | Tool | Task | Human review |
 |------|------|------|--------------|
 | 2025-06-10 | Copilot / ChatGPT | Phase 2 scaffold: FastAPI app, SQLAlchemy models, Alembic migration, auth router, deps, tests, Next.js pages, auth context, docs | Security flow, schema constraints, JWT scope handling, role guards reviewed |
-| 2025-06-10 | Copilot / ChatGPT | Phase 4 platform migration: db/migrations SQL, Alembic if_not_exists sync, bcrypt 4.0.1 pin, JWT_SECRET/SESSION_SECRET fallback, docs/README updates | Migration safety, dependency ordering, secret fallback logic reviewed |
+| 2025-06-10 | Copilot / ChatGPT | Phase 4 platform migration: db/migrations SQL, Alembic sync, bcrypt 4.0.1 pin, JWT_SECRET/SESSION_SECRET fallback, docs/README updates | Migration safety, dependency ordering, secret fallback logic reviewed; live register/login remains unverified |
+| 2025-06-10 | Coding agent | Project status documentation and migration syntax review | Workspace files and live schema inspected; no secrets read |
 
 ## Verification
 
